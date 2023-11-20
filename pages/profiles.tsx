@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useCallback } from "react";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
+import Head from 'next/head'
 
 const images = [
   '/images/default-blue.png',
@@ -37,12 +38,17 @@ const UserCard: React.FC<UserCardProps> = ({ name }) => {
   const imgSrc = images[Math.floor(Math.random() * 4)];
 
   return (
+    <>
+     <Head>
+        <title>Profiles</title>
+      </Head>
     <div className="group flex-row w-44 mx-auto">
         <div className="w-44 h-44 rounded-md flex items-center justify-center border-2 border-transparent group-hover:cursor-pointer group-hover:border-white overflow-hidden">
           <img draggable={false} className="w-max h-max object-contain" src={imgSrc} alt="" />
         </div>
       <div className="mt-4 text-gray-400 text-2xl text-center group-hover:text-white">{name}</div>
    </div>
+    </>
   );
 }
 

@@ -8,6 +8,8 @@ import useMoviesList from '@/hooks/useMovieList';
 import useFavorites from '@/hooks/useFavorites';
 import useInfoModalStore from '@/hooks/useInfoModal';
 
+import Head from 'next/head';
+
 // Check user login
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -29,8 +31,11 @@ export default function Home() {
   const { data: movies = [] } = useMoviesList()
   const { data: favorites = [] } = useFavorites()
   const {isOpen, closeModal} = useInfoModalStore();
-  return (
+  return (  
     <>
+      <Head>
+        <title>Homepage</title>
+      </Head>
       <InfoModal visible={isOpen} onClose={closeModal} />
       <Navbar />
       <Billboard />
